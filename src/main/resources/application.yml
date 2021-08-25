@@ -1,0 +1,39 @@
+#Application Configuration TestIngresoEvertec 
+server:
+  port: 8091
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+  security:
+    user:
+      name: admin
+      password: 1234
+
+  # ===============================
+  # HEROKU DB
+  # ===============================
+  datasource:
+    username: vljipixwmmnrkt
+    password: 9e1d6c1d45f131cecc70229a3433a929c1a66c8f462b5590d083a35c971657c6
+    url: jdbc:postgresql://ec2-35-174-122-153.compute-1.amazonaws.com:5432/d3g3slfef7i2jh
+
+  # ===============================
+  # JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+    level: org.springframework.web=DEBUG
