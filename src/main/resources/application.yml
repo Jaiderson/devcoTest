@@ -19,9 +19,9 @@ spring:
   # HEROKU DB
   # ===============================
   datasource:
-    username: vljipixwmmnrkt
-    password: 9e1d6c1d45f131cecc70229a3433a929c1a66c8f462b5590d083a35c971657c6
-    url: jdbc:postgresql://ec2-35-174-122-153.compute-1.amazonaws.com:5432/d3g3slfef7i2jh
+    username: postgres
+    password: Medellin123+-*
+    url: jdbc:postgresql://localhost:5432/devcoDb
 
   # ===============================
   # JPA / HIBERNATE

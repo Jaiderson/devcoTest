@@ -13,15 +13,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity(name="candidatos")
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter @ToString @Data
+@Builder @Getter @Setter @ToString @Data
 public class Candidato {
 
     @Id
