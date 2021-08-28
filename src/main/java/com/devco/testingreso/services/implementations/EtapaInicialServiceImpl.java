@@ -15,7 +15,7 @@ public class EtapaInicialServiceImpl implements IEtapaInicialService{
 
 	@Autowired
 	private IEtapaInicialRep etapaInicialRep;
-	
+
 	@Override
 	public EtapaInicial buscarEtapaInicialPorId(Long idEtapaInicial) {
 		return etapaInicialRep.findByIdEtapa(idEtapaInicial);

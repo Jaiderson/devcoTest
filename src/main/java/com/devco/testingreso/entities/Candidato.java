@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -51,4 +52,8 @@ public class Candidato {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idrol")
     private Rol rol;
+
+    @Transient
+    private boolean existente;
+
 }

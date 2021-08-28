@@ -41,10 +41,10 @@ public interface ICandidatoService {
 	public List<Candidato> consultarCandidatos();
 
 	/**
-	 * Registra un candidato nuevo, si este ya existe retorna el existente.
+	 * Registra un candidato nuevo, si este ya existe retorna el candidato que ya existe.
 	 * 
 	 * @param candidato Candidato a registrar.
-	 * @return Candidato nuevo o existente.
+	 * @return Candidato nuevo o candidato existente.
 	 */
 	public Candidato crearCandidato(Candidato candidato);
 

@@ -41,6 +41,7 @@ public class CandidatoServiceImpl implements ICandidatoService{
 		if(null == newCandidato) {
 			newCandidato = candidatorep.save(candidato);
 		}
+		newCandidato.setExistente(true);
 		return newCandidato;
 	}
 

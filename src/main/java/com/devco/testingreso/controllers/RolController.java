@@ -46,7 +46,7 @@ public class RolController {
 	})
 	public ResponseEntity<List<Rol>> listarRoles(@ApiParam(name="idRol", value="Valor opcional para traer los roles de un candidato.")
 			   @RequestParam(name="idRol", required = false) Long idRol){
-		List<Rol> roles = new ArrayList<Rol>();
+		List<Rol> roles = new ArrayList<>();
 		if(null == idRol) {
 			roles = rolService.consultarRoles();
 			if(roles.isEmpty()) {
@@ -73,7 +73,7 @@ public class RolController {
 		@ApiResponse(code = 401, message = "Acceso al recurso no autorizado."),
 		@ApiResponse(code = 400, message = "Informacion del rol incompleta.")
 	})
-	public ResponseEntity<Rol> crearRol(@ApiParam(name="rol", value="Rol a crear")
+	public ResponseEntity<Rol> crearRol(@ApiParam(name="rol", value="Rol a crear", required = true)
 			@Valid @RequestBody Rol rol, BindingResult result){
 		if(result.hasErrors()) {
 			MensajeError msnError = new MensajeError("NEW-RECORD");
@@ -93,7 +93,7 @@ public class RolController {
 		@ApiResponse(code = 401, message = "Acceso al recurso no autorizado."),
 		@ApiResponse(code = 400, message = "Informacion del rol incompleta.")
 	})
-	public ResponseEntity<Rol> modificarRol(@ApiParam(name="idRol", value="Id obligatorio del rol.") 
+	public ResponseEntity<Rol> modificarRol(@ApiParam(name="idRol", value="Id obligatorio del rol.", required = true) 
 	        @PathVariable("idRol") Long idRol, 
 			@ApiParam(name="Rol", value="Rol a actualizar.") 
 			@Valid @RequestBody Rol rol, BindingResult result){
