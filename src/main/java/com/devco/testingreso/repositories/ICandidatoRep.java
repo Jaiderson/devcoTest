@@ -3,6 +3,8 @@ package com.devco.testingreso.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.devco.testingreso.entities.Candidato;
@@ -33,7 +35,8 @@ public interface ICandidatoRep extends JpaRepository<Candidato, Long>{
 	 * @param nombre Nombre a buscar.
 	 * @return Lista de candidatos con el <b>nombre</b> o lista vacia en caso de no encontrar coincidencias.
 	 */
-	public List<Candidato> findByNombre(String nombre);
+	@Query(value="select * from candidatos c where c.nombre like %:nombre% ", nativeQuery = true)
+	public List<Candidato> buscarPorNombre(@Param("nombre") String nombre);
 
 	/**
 	 * Busca todos los candidatos que tengan el <b>rol</b> asociado. 

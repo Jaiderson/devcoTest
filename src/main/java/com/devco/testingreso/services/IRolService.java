@@ -29,7 +29,7 @@ public interface IRolService {
 	 * Modifica el registro de un rol existente.
 	 * 
 	 * @param Rol a modificar. 
-	 * @return Rol actualizado correctamente, si el rol no existe se crea.
+	 * @return Rol actualizado correctamente o <b>null</b> si el rol no existe.
 	 */
 	public Rol modificarRol(Rol rol);
 

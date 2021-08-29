@@ -27,7 +27,7 @@ public class CandidatoServiceImpl implements ICandidatoService{
 
 	@Override
 	public List<Candidato> consultarCandidatosPorNombre(String nomCandidato) {
-		return candidatorep.findByNombre(nomCandidato);
+		return candidatorep.buscarPorNombre(nomCandidato);
 	}
 
 	@Override

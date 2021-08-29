@@ -32,7 +32,11 @@ public class RolServiceImpl implements IRolService{
 
 	@Override
 	public Rol modificarRol(Rol rol) {
-		return crearRol(rol);
+		Rol newRol = rolRep.findByIdRol(rol.getIdRol());
+		if(null != newRol) {
+			newRol = rolRep.save(rol);
+		}
+		return newRol;
 	}
 
 	@Override

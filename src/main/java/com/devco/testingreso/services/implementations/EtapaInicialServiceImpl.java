@@ -1,11 +1,11 @@
 package com.devco.testingreso.services.implementations;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devco.testingreso.entities.Candidato;
 import com.devco.testingreso.entities.EtapaInicial;
 import com.devco.testingreso.repositories.IEtapaInicialRep;
 import com.devco.testingreso.services.IEtapaInicialService;
@@ -23,7 +23,7 @@ public class EtapaInicialServiceImpl implements IEtapaInicialService{
 
 	@Override
 	public List<EtapaInicial> consultarEtapaInicialsPorDni(String dni) {
-		return etapaInicialRep.findByCandidato(Candidato.builder().dni(dni).build());
+		return etapaInicialRep.findByDniCandidato(dni);
 	}
 
 	@Override
@@ -52,6 +52,34 @@ public class EtapaInicialServiceImpl implements IEtapaInicialService{
 			etapaInicialRep.delete(etapaInicialDb);
 		}
 		return etapaInicialDb;
+	}
+
+	@Override
+	public List<EtapaInicial> consultarEtapaInicialesPorFecPostulacion(Date fecPostulacion) {
+		return etapaInicialRep.findByFechaPostulacion(fecPostulacion);
+	}
+
+	@Override
+	public List<EtapaInicial> consultarEtapaInicialesEntreFecPostulacion(Date fecPostulacionIni, Date fecPostulacionFin) {
+		return etapaInicialRep.findBetweenFechaPostulacion(fecPostulacionIni, fecPostulacionFin);
+	}
+
+	@Override
+	public List<EtapaInicial> consultarEtapaInicialesPorRolEntreFecPostulacion(Long idRol, Date fecPostulacionIni,
+			Date fecPostulacionFin) {
+		return etapaInicialRep.findBetweenFechaPostulacionRol(idRol, fecPostulacionIni, fecPostulacionFin);
+	}
+
+	@Override
+	public List<EtapaInicial> consultarEtapasEntreFechaPostulacionRolCalTecnica(Long idRol, Float calTecnica,
+			Date fecPostulacionIni, Date fecPostulacionFin) {
+		return etapaInicialRep.findBetweenFechaPostulacionRolCalTecnica(idRol, calTecnica, fecPostulacionIni, fecPostulacionFin);
+	}
+
+	@Override
+	public List<EtapaInicial> consultarEtapasEntreFechaPostulacionRolCalTeorica(Long idRol, Float calTeorica,
+			Date fecPostulacionIni, Date fecPostulacionFin) {
+		return etapaInicialRep.findBetweenFechaPostulacionRolCalTeorica(idRol, calTeorica, fecPostulacionIni, fecPostulacionFin);
 	}
 
 }

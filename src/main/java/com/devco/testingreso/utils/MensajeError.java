@@ -22,7 +22,7 @@ public class MensajeError {
 
 	public MensajeError(String codMensaje) {
 		this.codMensaje = codMensaje;
-		this.mensajes = new ArrayList<Map<String, String>>();
+		this.mensajes = new ArrayList<>();
 	}
 
 	public String getMensaje(BindingResult result) {
