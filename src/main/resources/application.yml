@@ -1,6 +1,6 @@
 #Application Configuration TestIngresoEvertec 
 server:
-  port: 8091
+#  port: 8091
   error:
     include-message: always
     include-binding-errors: always
@@ -19,9 +19,14 @@ spring:
   # HEROKU DB
   # ===============================
   datasource:
-    username: postgres
-    password: Medellin123+-*
-    url: jdbc:postgresql://localhost:5432/devcoDb
+    username: lajqrlrryrncfa
+    password: 43bd9773a0ef94ea1c33d3a751a96b24e453b278052948bba8541d15b32a941a
+    url: jdbc:postgresql://ec2-52-71-231-37.compute-1.amazonaws.com:5432/ddvias9p8l3m4p    
+    
+# BD LOCAL   
+#    username: postgres
+#    password: Bucaramanga321*-+
+#    url: jdbc:postgresql://localhost:5432/devcoDb
 
   # ===============================
   # JPA / HIBERNATE
