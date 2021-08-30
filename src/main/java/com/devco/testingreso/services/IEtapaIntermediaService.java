@@ -12,13 +12,13 @@ public interface IEtapaIntermediaService {
 	/**
 	 * Busca una etapa intermedia dado su identificador unico <b>idEtapaIntermedia</b>.
 	 * 
-	 * @param idEtapaIntermedia Identificador unico de la etapa incial.
+	 * @param idEtapaIntermedia Identificador unico de la etapa intermedia.
 	 * @return Etapa intermedia asociada al identificador <b>idEtapaIntermedia</b> o <b>null</b> si no existe.
 	 */
 	public EtapaIntermedia buscarEtapaIntermediaPorId(Long idEtapaIntermedia);
 
 	/**
-	 * Busca un etapa intermedia dado el identificador unico de la etapa inicial asociada <b>idEtapaInicial</b>.
+	 * Busca una etapa intermedia dado el identificador unico de la etapa inicial asociada <b>idEtapaInicial</b>.
 	 * 
 	 * @param idEtapaInicial Identificador unico de la etapa incial.
 	 * @return Etapa intermedia o <b>null</b> si no existe.
@@ -33,7 +33,7 @@ public interface IEtapaIntermediaService {
 	 * @param calMedica Calificacion medica.
 	 * @return Lista las etapas intermedias o lista vacia en caso de no encontrar registros.
 	 */
-	public List<EtapaIntermedia> consultarEtapaInicialPorCalificaciones(Float calPsicologica, Float calMedica);
+	public List<EtapaIntermedia> consultarEtapaIntermediaPorCalificaciones(Float calPsicologica, Float calMedica);
 
 	/**
 	 * Busca todas las etapas intermedias registradas.
@@ -66,5 +66,7 @@ public interface IEtapaIntermediaService {
 	 * @return EtapaIntermedia eliminada o <b>null</b> si la etapa intermedia no existe.
 	 */
 	public EtapaIntermedia eliminarEtapaIntermedia(Long idEtapaIntermedia);
+
+	public List<EtapaIntermedia> etapasIntermediaSinNotificar();
 
 }

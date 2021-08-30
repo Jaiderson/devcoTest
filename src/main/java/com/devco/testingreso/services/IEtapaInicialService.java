@@ -109,4 +109,6 @@ public interface IEtapaInicialService {
 	 */
 	public EtapaInicial eliminarEtapaInicial(Long idEtapaInicial);
 
+	public List<EtapaInicial> etapasInicialesSinNotificar();
+
 }

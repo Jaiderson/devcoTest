@@ -124,9 +124,10 @@ public class CandidatoController {
     @ApiOperation(value = "Permite modificar un la informacion de un candidato existente.")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Candidato actualizado correctamente."),
+        @ApiResponse(code = 204, message = "Candidato actualizado correctamente."),
         @ApiResponse(code = 401, message = "Acceso al recurso no autorizado."),
-        @ApiResponse(code = 400, message = "Informacion del rol incompleta."),
-        @ApiResponse(code = 204, message = "Candidato actualizado correctamente.")
+        @ApiResponse(code = 400, message = "Informacion del candidato incompleta."),
+        @ApiResponse(code = 404, message = "Candidato a modificar no existe.")        
     })
     public ResponseEntity<Candidato> modificarCandidato(@ApiParam(name="idCandidato", value="Id obligatorio del candidato.", required = true) 
             @PathVariable("idCandidato") Long idCandidato, 
@@ -138,9 +139,11 @@ public class CandidatoController {
         }
         candidato.setIdCandidato(idCandidato);
         Candidato actCandidato = candidatoService.modificarCandidato(candidato);
-        HttpStatus status = null == actCandidato ? HttpStatus.NOT_FOUND : HttpStatus.OK; 
 
-        return ResponseEntity.status(status).body(candidato);
+        if(null == actCandidato) {
+        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Candidato a modificar no encontrado.");
+		}
+		return ResponseEntity.ok(candidato);
     }
 
     @DeleteMapping(value="/id/{idCandidato}")

@@ -259,9 +259,10 @@ public class EtapaInicialController {
         }
         etapaInicial.setIdEtapa(idEtapaInicial);
         EtapaInicial actEtapaInicial = etapaInicialService.modificarEtapaInicial(etapaInicial);
-        HttpStatus status = null == actEtapaInicial ? HttpStatus.NOT_FOUND : HttpStatus.OK; 
-
-        return ResponseEntity.status(status).body(etapaInicial);
+        if(null == actEtapaInicial) {
+        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Etapa inicial a modificar no encontrada.");
+		}
+		return ResponseEntity.ok(actEtapaInicial); 
     }
 
     @DeleteMapping(value="/{idEtapaInicial}")

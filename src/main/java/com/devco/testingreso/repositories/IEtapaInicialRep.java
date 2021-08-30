@@ -108,4 +108,7 @@ public interface IEtapaInicialRep extends JpaRepository<EtapaInicial, Long>{
                                                                        @Param("fechaPostulacionIni") Date fechaPostulacionIni, 
                                                                        @Param("fechaPostulacionFin") Date fechaPostulacionFin);
 
+	@Query(value="select * from etapa_inicial where estado_mail <> 'SI' or estado_mail is null", nativeQuery = true)
+	public List<EtapaInicial> findEtapaInicialNoEnviadas();
+
 }

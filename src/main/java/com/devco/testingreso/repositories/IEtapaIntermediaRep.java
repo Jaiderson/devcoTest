@@ -1,7 +1,6 @@
 package com.devco.testingreso.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,16 +13,16 @@ import com.devco.testingreso.entities.EtapaIntermedia;
 public interface IEtapaIntermediaRep extends JpaRepository<EtapaIntermedia, Long>{
 
 	/**
-	 * Busca una etapa inicial dado su identificador único <b>idEtapa</b>.
+	 * Busca una etapa intermedia dado su identificador unico <b>idEtapa</b>.
 	 * 
-	 * @param idEtapa Idetificador unico de la etapa inicial.
+	 * @param idEtapaInicial Idetificador unico de la etapa inicial.
 	 * @return Etapa inicial o null si no existe.
 	 */
 	@Query(value="select * from etapa_intermedia where idetapa = :idEtapaInicial ", nativeQuery = true)
 	public EtapaIntermedia findByIdEtapaInicial(@Param("idEtapaInicial") Long idEtapaInicial);
 
 	/**
-	 * Busca las etapas iniciales cuyos candiatos hallan sacado mas de <b>calPsicologica</b> en su
+	 * Busca las etapas intermedias cuyos candiatos hallan sacado mas de <b>calPsicologica</b> en su
 	 * calificacion psicologica y mas de <b>calMedica</b> en su calificacion medica.
 	 * 
 	 * @param calPsicologica Valor calificacion prueba psicologica.
@@ -34,5 +33,8 @@ public interface IEtapaIntermediaRep extends JpaRepository<EtapaIntermedia, Long
 			   + " and calificacion_medica >= :calMedica ", nativeQuery = true)
 	public List<EtapaIntermedia> findByCalificaciones(@Param("calPsicologica") Float calPsicologica, 
 			                                          @Param("calMedica") Float calMedica);
+
+	@Query(value="select * from etapa_intermedia where estado_mail <> 'SI' or estado_mail is null", nativeQuery = true)
+	public List<EtapaIntermedia> findEtapaIntermediaNoEnviadas();
 
 }

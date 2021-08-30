@@ -56,4 +56,8 @@ public class EtapaIntermedia {
     @ApiModelProperty(position = 5, dataType = "String", example = "Persona con hipertencion arterial.", value = "Comentarios realizador por el evaluador de la etapa 2.")
     private String comentarios;
 
+    @Column(name="estado_mail")
+    @ApiModelProperty(position = 9, dataType = "String", example = "Cuando se actualiza este campo a NO se puede consumir el servicio de notificacion mail.", value = "Campo usado para notificar mail al candidato.")
+    private String mailEnviado;
+
 }

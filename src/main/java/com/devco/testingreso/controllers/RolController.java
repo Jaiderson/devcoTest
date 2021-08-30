@@ -107,9 +107,10 @@ public class RolController {
 		}
 		rol.setIdRol(idRol);
 		Rol nuevoRol = rolService.modificarRol(rol);
-		HttpStatus status = null == nuevoRol ? HttpStatus.NOT_FOUND : HttpStatus.OK; 
-
-		return ResponseEntity.status(status).body(nuevoRol);
+        if(null == nuevoRol) {
+        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rol a modificar no encontrada.");
+		}
+		return ResponseEntity.ok(nuevoRol); 
 	}
 
 	@DeleteMapping(value="/{idRol}")

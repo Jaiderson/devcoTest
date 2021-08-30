@@ -32,7 +32,7 @@ public class EtapaIntermediaServiceImpl implements IEtapaIntermediaService{
 	}
 
 	@Override
-	public List<EtapaIntermedia> consultarEtapaInicialPorCalificaciones(Float calPsicologica, Float calMedica) {
+	public List<EtapaIntermedia> consultarEtapaIntermediaPorCalificaciones(Float calPsicologica, Float calMedica) {
 		return etapaIntermediaRep.findByCalificaciones(calPsicologica, calMedica);
 	}
 
@@ -52,11 +52,11 @@ public class EtapaIntermediaServiceImpl implements IEtapaIntermediaService{
 
 	@Override
 	public EtapaIntermedia modificarEtapaIntermedia(EtapaIntermedia etapaIntermedia) {
-		EtapaIntermedia etapaIntermediaDb = etapaIntermediaRep.findByIdEtapaInicial(etapaIntermedia.getEtapaInicial().getIdEtapa());
+		EtapaIntermedia etapaIntermediaDb = buscarEtapaIntermediaPorId(etapaIntermedia.getIdEtapaM());
 		if(null != etapaIntermediaDb) {
-			etapaIntermedia = etapaIntermediaRep.save(etapaIntermedia);
+			etapaIntermediaDb = etapaIntermediaRep.save(etapaIntermedia);
 		}
-		return etapaIntermedia;
+		return etapaIntermediaDb;
 	}
 
 	@Override
@@ -66,6 +66,11 @@ public class EtapaIntermediaServiceImpl implements IEtapaIntermediaService{
 			etapaIntermediaRep.delete(etapaIntermediaDb);
 		}
 		return etapaIntermediaDb;
+	}
+
+	@Override
+	public List<EtapaIntermedia> etapasIntermediaSinNotificar() {
+		return etapaIntermediaRep.findEtapaIntermediaNoEnviadas();
 	}
 
 }

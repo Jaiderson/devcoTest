@@ -9,9 +9,17 @@ import com.devco.testingreso.entities.Rol;
 import com.devco.testingreso.repositories.IRolRep;
 import com.devco.testingreso.services.IRolService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class RolServiceImpl implements IRolService{
 
+	public RolServiceImpl(IRolRep rolRep) {
+		super();
+		this.rolRep = rolRep;
+	}
+	
 	@Autowired
 	private IRolRep rolRep;
 	

@@ -29,7 +29,7 @@ public class EtapaFinal {
     @Column(name="idetapaF")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(position=1, dataType="Long", value="Identificador unico de la etapa 3.<br>", example="200", required=true)
-	private Long idEtapa;
+	private Long idEtapaF;
 
     @OneToOne
     @JoinColumn(name = "idetapaM")
@@ -43,16 +43,20 @@ public class EtapaFinal {
     @Max(value = 1, message = "Puntaje promedio debe ser mayor a cero y menor a uno. (Representa un %)")
     @NotNull(message = "Puntaje promedio no puede ser vacio.")
     @ApiModelProperty(position = 3, dataType = "Float", example = "0.83", value = "Valor del resultado promedio de las etapas de seleccion. (Representa un %)<br>")
-    private Float calPsicologica;
+    private Float promedio;
 
     @Column(name="salario_acordado")
     @Min(value = 0, message = "Salario acordado debe ser mayor a cero.")
     @NotNull(message = "Salario acordado medica no puede ser vacio.")
-    @ApiModelProperty(position = 4, dataType = "Float", example = "0.91", value = "Valor del resultado de la prueba medica. (Representa un %)<br>")
-    private Double calMedica;
+    @ApiModelProperty(position = 4, dataType = "Float", example = "5400000", value = "Valor del salario acordado con el candidato.<br>")
+    private Double salarioAcordado;
 
     @Column(name="comentarios")
-    @ApiModelProperty(position = 5, dataType = "String", example = "Persona con hipertencion arterial.", value = "Comentarios realizador por el evaluador de la etapa 2.")
+    @ApiModelProperty(position = 5, dataType = "String", example = "Aprobado gran espectativa.", value = "Comentarios realizador por el evaluador de la etapa 3.")
     private String comentarios;
+
+    @Column(name="estado_mail")
+    @ApiModelProperty(position = 9, dataType = "String", example = "Cuando se actualiza este campo a NO se puede consumir el servicio de notificacion mail.", value = "Campo usado para notificar mail al candidato.")
+    private String mailEnviado;
 
 }

@@ -38,7 +38,7 @@ public class EtapaIntermediaController {
     private IEtapaIntermediaService etapaIntermediaService;
 
     @GetMapping(value = "/id2/{idEtapaInicial}")
-    @ApiOperation(value = "Permite buscar una etapas intermedia registrada por el id de la etapa inicial asociada.")
+    @ApiOperation(value = "Permite buscar una etapa intermedia registrada por el id de la etapa inicial asociada.")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Etapa intermedia encontrada."),
         @ApiResponse(code = 204, message = "Sin contenido."),
@@ -48,11 +48,11 @@ public class EtapaIntermediaController {
     public ResponseEntity<EtapaIntermedia> buscarEtapaIntermediaPorIdEtapaInicial(
     		@ApiParam(name="idEtapaInicial", value="Identificador unico de la etapa intermedia.")
     	    @PathVariable(name="idEtapaInicial", required = true) Long idEtapaInicial){
-        EtapaIntermedia etapasIntermedia = etapaIntermediaService.buscarEtapaIntermediaPorIdEtapaInicial(idEtapaInicial);
-        if(null == etapasIntermedia) {
+        EtapaIntermedia etapaIntermedia = etapaIntermediaService.buscarEtapaIntermediaPorIdEtapaInicial(idEtapaInicial);
+        if(null == etapaIntermedia) {
         	throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_EXISTEN_ETAPAS_INTERMEDIAS);
         }
-        return ResponseEntity.ok(etapasIntermedia); 
+        return ResponseEntity.ok(etapaIntermedia); 
     }
 
     @GetMapping(value = "/id/{idEtapaIntermedia}")
@@ -92,7 +92,7 @@ public class EtapaIntermediaController {
     		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valor de las calificaciones erradas.");
     	}
 
-    	List<EtapaIntermedia> etapasIntermedias = etapaIntermediaService.consultarEtapaInicialPorCalificaciones(calPsicologica, calMedica);
+    	List<EtapaIntermedia> etapasIntermedias = etapaIntermediaService.consultarEtapaIntermediaPorCalificaciones(calPsicologica, calMedica);
         if(etapasIntermedias.isEmpty()) {
         	throw new ResponseStatusException(HttpStatus.NO_CONTENT, NO_EXISTEN_ETAPAS_INTERMEDIAS);
         }
@@ -153,9 +153,11 @@ public class EtapaIntermediaController {
         }
         etapaIntermedia.setIdEtapaM(idEtapaIntermedia);
         EtapaIntermedia actEtapaIntermedia = etapaIntermediaService.modificarEtapaIntermedia(etapaIntermedia);
-        HttpStatus status = null == actEtapaIntermedia ? HttpStatus.NOT_FOUND : HttpStatus.OK; 
 
-        return ResponseEntity.status(status).body(etapaIntermedia);
+        if(null == actEtapaIntermedia) {
+        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Etapa intermedia a modificar no encontrada.");
+		}
+		return ResponseEntity.ok(actEtapaIntermedia); 
     }
 
     @DeleteMapping(value="/{idEtapaIntermedia}")

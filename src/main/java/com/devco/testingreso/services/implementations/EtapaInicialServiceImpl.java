@@ -38,7 +38,7 @@ public class EtapaInicialServiceImpl implements IEtapaInicialService{
 
 	@Override
 	public EtapaInicial modificarEtapaInicial(EtapaInicial etapaInicial) {
-		EtapaInicial etapaInicialDb = etapaInicialRep.findByIdEtapa(etapaInicial.getIdEtapa());
+		EtapaInicial etapaInicialDb = buscarEtapaInicialPorId(etapaInicial.getIdEtapa());
 		if(etapaInicialDb != null) {
 			etapaInicialDb = etapaInicialRep.save(etapaInicial);
 		}
@@ -80,6 +80,11 @@ public class EtapaInicialServiceImpl implements IEtapaInicialService{
 	public List<EtapaInicial> consultarEtapasEntreFechaPostulacionRolCalTeorica(Long idRol, Float calTeorica,
 			Date fecPostulacionIni, Date fecPostulacionFin) {
 		return etapaInicialRep.findBetweenFechaPostulacionRolCalTeorica(idRol, calTeorica, fecPostulacionIni, fecPostulacionFin);
+	}
+
+	@Override
+	public List<EtapaInicial> etapasInicialesSinNotificar() {
+		return etapaInicialRep.findEtapaInicialNoEnviadas();
 	}
 
 }
