@@ -28,7 +28,7 @@ public class Rol {
     @Column(name="idrol")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(position = 1, dataType = "Long", value = "Identificador unico del rol.<br>", example = "100", required = true)
-    private long idRol;
+    private Long idRol;
     
     @Column(name="nombre", unique = true)
     @NotNull(message = "El nombre del rol no puede ser vacio.")

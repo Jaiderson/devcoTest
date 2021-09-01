@@ -12,6 +12,10 @@ import com.devco.testingreso.services.ICandidatoService;
 @Service
 public class CandidatoServiceImpl implements ICandidatoService{
 
+	public CandidatoServiceImpl(ICandidatoRep candidatoRep) {
+		this.candidatorep = candidatoRep;
+	}
+
 	@Autowired
 	private ICandidatoRep candidatorep;
 
